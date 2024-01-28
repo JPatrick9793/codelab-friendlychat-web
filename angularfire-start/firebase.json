@@ -1,63 +1,60 @@
 {
-  "firestore": {
-    "rules": "firestore.rules",
-    "indexes": "firestore.indexes.json"
-  },
-  "hosting": [
-    {
-      "source": ".",
-      "ignore": [
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**"
-      ],
-      "frameworksBackend": {
-        "region": "us-central1"
-      }
-    },
-    {
-      "target": "friendlychat",
-      "source": ".",
-      "frameworksBackend": {}
-    }
-  ],
-  "storage": {
-    "rules": "storage.rules"
-  },
-  "emulators": {
-    "auth": {
-      "port": 9099
-    },
-    "functions": {
-      "port": 5001
-    },
     "firestore": {
-      "port": 8080
+      "rules": "firestore.rules",
+      "indexes": "firestore.indexes.json"
     },
-    "hosting": {
-      "port": 5000
-    },
+    "hosting": [
+      {
+        "source": ".",
+        "target": "friendlychat",
+        "ignore": [
+          "firebase.json",
+          "**/.*",
+          "**/node_modules/**"
+        ],
+        "frameworksBackend": {
+          "region": "us-central1"
+        }
+      }
+    ],
     "storage": {
-      "port": 9199
+      "rules": "storage.rules"
     },
-    "ui": {
-      "enabled": true
+    "emulators": {
+      "auth": {
+        "port": 9099
+      },
+      "functions": {
+        "port": 5001
+      },
+      "firestore": {
+        "port": 8080
+      },
+      "hosting": {
+        "port": 5000
+      },
+      "storage": {
+        "port": 9199
+      },
+      "ui": {
+        "enabled": true
+      },
+      "singleProjectMode": true
     },
-    "singleProjectMode": true
-  },
-  "functions": [
-    {
-      "source": "functions",
-      "codebase": "default",
-      "ignore": [
-        "node_modules",
-        ".git",
-        "firebase-debug.log",
-        "firebase-debug.*.log"
-      ],
-      "predeploy": [
-        "npm --prefix \"$RESOURCE_DIR\" run lint"
-      ]
-    }
-  ]
-}
+    "functions": [
+      {
+        "source": "functions",
+        "codebase": "default",
+        "ignore": [
+          "node_modules",
+          ".git",
+          "firebase-debug.log",
+          "firebase-debug.*.log"
+        ],
+        "predeploy": [
+          "npm --prefix \"$RESOURCE_DIR\" run lint",
+          "npm --prefix \"$RESOURCE_DIR\" run build"
+        ]
+      }
+    ]
+  }

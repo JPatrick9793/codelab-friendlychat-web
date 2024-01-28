@@ -36,7 +36,29 @@ import { HeaderComponent } from './components/header/header.component';
     ChatPageComponent,
     HeaderComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, CommonModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    CommonModule,
+    FormsModule,
+    provideFirebaseApp(() =>
+      initializeApp({
+        projectId: 'friendlychat-f33cc',
+        appId: '1:308775880242:web:695363c9f67c4e1a849e2b',
+        storageBucket: 'friendlychat-f33cc.appspot.com',
+        // locationId: 'us-central',
+        apiKey: 'AIzaSyDfqqSlUxhG0UH-toT3NX2K_gH2Jim2dcw',
+        authDomain: 'friendlychat-f33cc.firebaseapp.com',
+        messagingSenderId: '308775880242',
+        measurementId: 'G-09G5NZ4PYW',
+      })
+    ),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
+    provideFunctions(() => getFunctions()),
+    provideMessaging(() => getMessaging()),
+    provideStorage(() => getStorage()),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
